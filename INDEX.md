@@ -1,0 +1,37 @@
+# 10 — AI Development: 10 Complete Products
+
+**Series status: ✅ Complete — all 10 products built, live-verified, zipped and uploaded to Google Drive ("SPManchester Portfolio Projects / 10 - AI Development").**
+
+Service #10 in SPManchester's portfolio programme — the **final series**, completing the programme at **100/100** (after 01 Web Development, 02 Mobile App Development, 03 Software Development, 04 eCommerce, 05 Artificial Intelligence, 06 Graphic Design & UI/UX, 07 SEO, 08 IT Consultancy, 09 Digital Product & Ads Management). This series is deliberately distinct from Series 05 (Artificial Intelligence): Series 05 built *business-facing* AI tools (support chatbot, invoice extraction, sentiment), while this series builds *developer/engineering-facing* AI tooling — the platform layer an AI team uses to build, evaluate, secure and run AI features: prompt engineering, retrieval, evaluation, vector search, tokenisation and cost, agent workflows, annotation quality, safety filtering, request routing and production drift monitoring.
+
+Every product is a complete product built by SPManchester: a working web console (10 views, every view wired to the API) served by its own zero-dependency Node.js backend (node:http / node:sqlite / node:crypto only) + SQLite database, with the AI-engineering machinery implemented **locally in code** — TF-IDF retrieval with per-term score breakdowns, an evaluation-metrics engine, hashed/TF-IDF vector cosine search and deterministic k-means, a greedy longest-match tokeniser, a guardrailed workflow runner, Cohen's kappa agreement statistics, a policy-rule safety filter, weighted request routing with budget caps, and population-stability drift monitoring — over **seeded local corpora, datasets and traffic**, so every behaviour is verified offline against labelled test cases with hand-computed expected outputs, with **zero external API keys**. In a production engagement, hosted model endpoints (OpenAI, Anthropic, Google, Azure OpenAI, vector databases) plug in behind the same documented interfaces (each PRD lists this backlog); no product claims a live hosted-model connection or real client results. Series plan: SERIES-PLAN.md.
+
+| # | Product | Folder / ZIP | Views = Screenshots | Endpoints | Tables | Live tests |
+|---|---------|--------------|--------------------|-----------|--------|------------|
+| 1 | PromptStudio — prompt template library & test-run scorer | spm-aidev-promptstudio | 10 = 10 | 27 | 11 | 54/54 |
+| 2 | RagBase — RAG knowledge-base builder | spm-aidev-ragbase | 10 = 10 | 28 | 11 | 42/42 |
+| 3 | EvalBench — model & prompt evaluation harness | spm-aidev-evalbench | 10 = 10 | 25 | 11 | 51/51 |
+| 4 | VectorLab — vector search & clustering playground | spm-aidev-vectorlab | 10 = 10 | 27 | 11 | 42/42 |
+| 5 | TokenLab — tokeniser & cost estimator | spm-aidev-tokenlab | 10 = 10 | 27 | 12 | 48/48 |
+| 6 | AgentFlow — agent workflow builder & trace runner | spm-aidev-agentflow | 10 = 10 | 26 | 12 | 50/50 |
+| 7 | DataLabel — annotation & agreement studio | spm-aidev-datalabel | 10 = 10 | 26 | 11 | 54/54 |
+| 8 | GuardRail — AI safety filter & red-team suite | spm-aidev-guardrail | 10 = 10 | 27 | 12 | 66/66 |
+| 9 | ModelRouter — intelligent request router | spm-aidev-modelrouter | 10 = 10 | 26 | 11 | 55/55 |
+| 10 | FeedbackLoop — production AI feedback & drift monitor | spm-aidev-feedbackloop | 10 = 10 | 26 | 11 | 51/51 |
+
+**Series totals: 405 files, 100 views = 100 screenshots, 265 endpoints, 113 tables, 513 live tests passing (513/513).**
+
+## Product summaries
+
+1. **PromptStudio** — Pennine AI Studio (Northern Quarter): template rendering with named missing variables, word-level version diffs (seeded triage v2 = 7 added / 0 removed), a deterministic local responder at the runner seam, and scoring whose hand case lands exactly — expected "the cat sat" vs produced "The cat slept" → token F1 **0.6667**; the 3-case summariser aggregate is mean F1 **0.8413**.
+2. **RagBase** — chunking maths proven (100-word doc at size 30/overlap 10 → 5 chunks, starts 0/20/40/60/80); TF-IDF with idf = ln((1+N)/(1+df))+1 (idf(alpha, N=2, df=1) = **1.4054651081**); per-term breakdowns sum to cosine scores within 1e-9 (seeded "peroxide whitening gel" tops at 0.4353); evaluation hit rate@1 = 2/3, MRR = 0.8333 on the provable fixture, MRR 1.0000 on the seeded corpus (10 documents → 21 chunks, 538-term vocabulary).
+3. **EvalBench** — the canonical 20-case ticket-intent fixture scores accuracy **17/20 = 0.85**, billing P = 5/6, R = 5/7, F1 = **10/13 = 0.7692**, macro-F1 0.8498; the seeded v1→v2 comparison is verdict *stable* (delta −0.0006, fixed {TKT-03, TKT-09}, broken {TKT-05, TKT-11}), while an all-billing run is correctly flagged *regression* (delta −0.677).
+4. **VectorLab** — TF-IDF search "dentist implant" ranks **0.798218 / 0.745710 / 0.321041** with per-term contributions reconciling exactly; orthogonal pair = cosine 0 and identical text = 1.0 under both vectorisers; deterministic k-means recovers all 3 topics at purity **1.0**, inertia trace 4.857128 → 3.140236 (non-increasing), silhouette 0.285154 — hash collisions are surfaced and explained, not hidden.
+5. **TokenLab** — greedy longest-match tokeniser over a seeded 250-entry vocabulary (`hello world` → 3 tokens; `testing` → test+ing; unknowns fall back to characters); the spec cost case reconciles exactly (1M in @ £2.50 + 500k out @ £10.00 = **£7.50**); a 30,000-request month projects Tier M at **£120.00**, recommended at quality floor 80, with seeded tiers stated plainly as example rates.
+6. **AgentFlow** — the seeded quote chain reconciles by hand (lookup 45 → ×2 → "Total for 2 replacement routers: £90.", 20 credits); the budget guardrail halts a 30+30+30 run at cap 65 **before step 3, spent exactly 60**; approval steps pause as `awaiting_approval` and resume via API; the calculator is a safe recursive-descent parser (no eval) that rejects code-like input.
+7. **DataLabel** — the canonical fixture hits its target exactly: two annotators agree on 8/10 (po = 0.8), marginals give pe = 0.5, so **Cohen's κ = 0.6 exactly**; a second schema gives κ = 0.6364; export distributions reconcile (urgent 4/routine 4/unresolved 2, shifting to 5/4/1 after adjudication).
+8. **GuardRail** — a deterministic policy-rule safety filter (stated as such, never as an ML classifier): threshold edges verified live — email 30 + UK phone 30 = **60 → block** exactly at the threshold, postcode 15 + mild keyword 10 = **25 → flag** exactly at its threshold; the seeded red-team run passes 10/12 (0.8333) with the two failures identified by case.
+9. **ModelRouter** — weighted routing over a seeded 5-tier catalogue (seeded example figures, stated plainly): hand-derived fixture winners score **0.92 / 0.6509 / 0.78** by priority; at a £0.65 budget cap, requests 1–2 route to Tier M (£0.30 each), request 3 falls back to cheapest Tier E (£0.05), request 4 is rejected — spend lands on **exactly £0.65**.
+10. **FeedbackLoop** — the seeded drift story quantifies itself: billing share 0.20 → 0.40 gives **PSI = 0.2153 (moderate)**, mean rating falls 4.15 → 3.30 and exactly **4 alerts** fire; the hand fixture (50/50 vs 25/75) gives PSI **0.2747 → significant**, and identical distributions give PSI 0.
+
+GitHub: packages are git-ready; proposed repo names/descriptions/topics are in PUBLISH-QUEUE.md for Ali's own upload. Each product's PROJECT-DETAILS.md holds its LinkedIn draft with a [GitHub link] placeholder to fill once its repo is live.

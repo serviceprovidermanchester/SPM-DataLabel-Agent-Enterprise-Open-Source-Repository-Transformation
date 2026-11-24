@@ -1,0 +1,37 @@
+{
+  "name": "spm-aidev-datalabel",
+  "version": "1.0.0",
+  "description": "DataLabel — Enterprise Annotation & Agreement Studio by SPManchester Private Limited. Zero-dependency Node.js architecture with Cohen's Kappa agreement engine.",
+  "main": "backend/src/server.js",
+  "type": "commonjs",
+  "private": true,
+  "author": "Sayed Mudassar Akbar <info@spmanchester.com> (https://www.spmanchester.com)",
+  "contributors": [
+    "SPManchester Private Limited <info@spmanchester.com> (https://www.spmanchester.com)"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.spmanchester.com",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "seed": "node backend/src/seed.js",
+    "test": "node tests/run-tests.js",
+    "check": "node --check backend/src/server.js && node --check backend/src/app.js && node --check backend/src/db.js && node --check backend/src/seed.js && node --check backend/src/seed-data.js && node --check backend/src/ai/engine.js && node --check tests/run-tests.js",
+    "docker:build": "docker build -t spmanchester/datalabel:latest .",
+    "docker:run": "docker run -p 4000:4000 -v datalabel_data:/app/data spmanchester/datalabel:latest"
+  },
+  "keywords": [
+    "ai-development",
+    "data-annotation",
+    "cohens-kappa",
+    "inter-annotator-agreement",
+    "data-quality",
+    "llmops",
+    "machine-learning",
+    "evaluation",
+    "manchester",
+    "spmanchester"
+  ]
+}

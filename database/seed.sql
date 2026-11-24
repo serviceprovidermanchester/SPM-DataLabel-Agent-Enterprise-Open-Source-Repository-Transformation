@@ -1,0 +1,9 @@
+-- DataLabel — seed summary (the executable seed lives in backend/src/seed.js
+-- and backend/src/seed-data.js, run idempotently on first server start).
+-- Showcase team: LabelWorks Manchester, Northern Quarter, Manchester (fictional).
+-- Owner: owner@labelworks.co.uk · Staff: team@labelworks.co.uk
+-- Annotators: Zara Ahmed and Callum Reid (annotators), Priya Shah (adjudicator).
+-- Schemas: Dental Triage (10 items, labels urgent/routine) and Ticket Intent
+-- (8 items, labels billing/booking/clinical). Seeded annotations are fixed
+-- per item in seed-data.js so all agreement figures reconcile by hand
+-- (Dental Triage: po 8/10 = 0.8, pe 0.5, Cohen's kappa 0.6 exactly).
